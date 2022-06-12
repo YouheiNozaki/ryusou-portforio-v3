@@ -5,8 +5,13 @@ const someProps = {
 	count: 0,
 };
 
-// Full Astro Component Syntax:
-// https://docs.astro.build/core-concepts/astro-components/
+const apiUrl = 'https://ryusou-mtkh.microcms.io/api/v1/tags'
+const headers = {
+  headers: { 'X-MICROCMS-API-KEY': import.meta.env.X_MICROXMS_API_KEY },
+};
+const response = await fetch(apiUrl, headers);
+const data = await response.json();
+
 ---
 
 <html lang="en">
@@ -28,7 +33,7 @@ const someProps = {
 	<body>
 		<main>
 			<Counter {...someProps} client:visible>
-				<h1>Hello, React!</h1>
+				<h1>{console.log(data.contents)}</h1>
 			</Counter>
 		</main>
 	</body>
